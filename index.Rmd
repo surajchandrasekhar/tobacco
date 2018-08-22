@@ -1,0 +1,64 @@
+---
+title: "A3"
+author: "Suraj Chandrasekhar"
+date: "May 6, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(foreign)
+library(survey)
+library(Hmisc)
+library(dplyr)
+source("./analysis.R")
+```
+
+# National Level
+
+The factor I am looking into in the BRFSS survey is looking at the smoking tendencies. I have taken several factors while looking at smoking tendencies in the United States for people over the age of 18. Since there is not around 250 million respondents to the surveys, but rather around 486,303 respondents, we are looking at the sample weights of each respondent to give an estimation on the general trends in the U.S. The smoking factors that were asked in the survey include, have you smoked more than 100 cigarettes in your entire life, How often do you smoke cigarettes, have you quit smoking for the past 12 months, do you use non-smoking tobacco, and your position on e-cigarettes. The first aspect I looked into was seeing the level at which people smoke in the U.S. on a national scale level. To get a better understanding of the general populations, I took a sum of the survey weights, as these weights are representative of getting the total population, and the survey demonstrates the most of the population does not smoke cigarettes, while if you do smoke, you are most likely to smoke everyday than on-and-off, showing the addictiveness of this drug.
+
+
+
+```{r echo=FALSE}
+p1
+```
+
+The part of the data I want to look at is looking at how smoking tendencies lead to people using alternatives to cigarettes. The two major alternatives to smoking cigarettes is smokeless tobacco and e-cigarettes. Smokeless tobacco, the most common type is chewing tobacco, has the same chemical formula as cigarettes, but its not smoked. Looking at the graph belows, it seems like people who smoke everyday or do not smoke are both unlikely to use smokeless tobacco, while people who occasionally smoke are also unlikely to use smokeless tobacco, but are more likely to occassionally use it than the others. This makes a little sense since tobacco/nicotine is an addictive drug, so people that occassionally smoke cigarettes are still dependent on tobacco, so they find other alternatives to smoking as well, such as "dipping", or taking smokeless tobacco.
+
+```{r echo=FALSE}
+p2
+p3
+p4
+```
+
+Another alternative to smoking cigarettes is smoking e-cigarettes, or vaping. E-cigarettes is smoking a nicotine based vapor and simulates the feeling of smoking tobacco cigarettes, but has shown to have less long term effects than normal cigarettes. The graphs below shown that people who have smoked cigarettes have also tried out e-cigarettes, which makes sense as they are maybe looking for alternatives to ease their way into quitting, while people who have never smoked a cigarette are likely to have never tried e-Cigarettes either. This maybe that they feel that they are not interested in the idea of smoking or because they might feel that smoking e-Cigarettes will likely lead them to try regular cigarettes.
+
+```{r echo=FALSE}
+p5
+p6
+p7
+```
+
+# State Level
+
+Now that we have seen the national trend for smoking and how smokers and non-smokers feel about the alternatives to cigarettes, we can look at it at a state level to see if its certain states that smoke more cigarettes than other states. The first thing we are going to look at is the table to show the smoking tendencies for each state. The eval column represents the proportion of the state's population that smokes everyday, the sval column represents the proportion of the state's population that smoke occassionally, and the nval column represents the proportion of the state's population that never smokes. The table shows the 10 states and territories with the highest proportion of a state's population that smokes everyday. Based on the data, other than Guam, the states represented are in the midwest and southeast United States, which is where smoking is a more tolerated living style. Looking at the table below that showing the 10 states and territories with the highest proportion of people that have never smoked, other than Florida, all the states are in the West Coast or the North East, which could show a difference in lifestyles between the two places.
+
+```{r echo=FALSE}
+kable(statesmoke10)
+kable(statesmokebot10)
+```
+
+The first graph I am going to show is a scatter plot that shows the relationship between the proportion of people in each state that does not smoke versus the proportion of people in each state that smoke everyday. I also added a red line to show the average proportion of people that never smoke in each state, and it shows that most states have a proportion of people that do not smoke at above 0.6, or above 60%. 
+
+```{r echo=FALSE}
+p8
+```
+
+
+The last graph below, I am going to show is a scatter plot showing the proportion someone vapes, which is taking an e-cigarette,and the proportion someone dips, which is chewing tobacco or any form of non-smoking tobacco, for each state. The data shows that vaping is not popular in the U.S., as the state with the highest frequency of vaping is less than 0.3, or 30%. On the contrary, Dipping is very popular it seems in America. In the majority of the states, the proportion of people that say that they Dip or take any other form of non-smoking tobacco is greater than 0.5, or 50%, demonstrating that the majority of people in those states above the age of 18 dip. The data also shows a correlation of `r cor(alt_table$vapeval, alt_table$dipval)`, which is a fairly strong positive value, meaning that there is a strong likelihood that if you are in a state that vapes a decent amount, than there is a good chance that you are in a state that also does a lot of chewing tobacco.
+
+```{r echo=FALSE}
+p9
+```
